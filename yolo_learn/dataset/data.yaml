@@ -1,0 +1,10 @@
+# 1. 데이터셋 경로
+path: dataset # 학습 데이터셋 최상위 폴더명
+train: train/images # 학습용 이미지 경로
+val: val/images # 검증용 이미지 경로
+# test: test/images # test는 데이터가 많을 경우 선택사항
+
+# 2. 클래스 정보
+nc: 1    # Number of Class - 전체 클래스 갯수
+names:
+  0: fan  # 클래스 순서와 이름
