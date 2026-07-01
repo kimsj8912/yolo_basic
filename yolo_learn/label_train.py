@@ -65,3 +65,4 @@ results = model.train(
 print('모델 학습 종료')
 print(f'정밀도: {results.results_dict['metrics/precision(B)']:.4f}')
 print(f'재현율: {results.results_dict['metrics/recall(B)']:.4f}')
+print(f"result: {results.results_dict}")
