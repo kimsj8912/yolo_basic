@@ -1,0 +1,5 @@
+chromadb    # RAG
+ollama      # local llm
+PyPDF2      # PDF 읽는 라이브러리
+langchain-text-splitters    # 긴 텍스트를 적당히 끊어주는 라이브러리
+
