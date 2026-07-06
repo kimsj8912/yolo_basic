@@ -22,3 +22,6 @@ def now_data() -> str:
     curr_datetime = datetime.now()
     formatted_datetime = curr_datetime.strftime("%Y-%m-%d")
     return formatted_datetime
+
+
+tools = [check_weather, check_stock, now_data]
