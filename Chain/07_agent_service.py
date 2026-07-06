@@ -1,6 +1,8 @@
 from datetime import datetime
 
+from langchain.agents import create_agent
 from langchain_core.tools import tool
+from langchain_ollama import ChatOllama
 
 
 @tool
@@ -25,3 +27,26 @@ def now_data() -> str:
 
 
 tools = [check_weather, check_stock, now_data]
+
+# 모델 불러오기
+model = ChatOllama(
+    base_url="http://localhost:11434",
+    model="llama3.1:latest",
+    temperature=0,
+)
+system_prom = """
+    당신은 도구를 사용할 수 있는 비서입니다.
+    질문에 답하기 위한 도구를 필요하다면 사용하세요.
+    [출력 규칙 - 반드시 준수할 것]
+    1. 최종 답변은 오직 100% 한글로만 작성하세요.
+    2. 도구의 결과를 바탕으로 한글 문장으로 답하세요.
+
+"""
+
+agent = create_agent(model, tools=tools, system_prompt=system_prom)
+
+message = input("올라마 비서한테 날씨/주가지수/현재시간을 물어바바\n")
+resp = agent.stream({'message': [('user', message)]}, stream_mode="updates")
+
+for chunk in resp:
+    print(f"chunk: {chunk}")
