@@ -20,7 +20,8 @@ if user_input:
         # 4. 모델을 생성하여 전달
         model = ChatOllama(
             base_url="http://localhost:11434",
-            model="llama3.2:3b",
+            # model="llama3.2:3b", exaone3.5:7.8b  
+            model="exaone3.5:7.8b",
             temperature=0,
         )
         prompt = ChatPromptTemplate.from_template("당신은 재미있는 대화상대 입니다. 질문에 재미있게 답해주세요.\n 질문: {question}")
