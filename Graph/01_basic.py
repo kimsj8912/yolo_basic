@@ -11,7 +11,7 @@ class SimpleState(TypedDict):
 # 2. 모델 준비
 llm = ChatOllama(
     base_url="http://localhost:11434",
-    model="llama3.2:3b",
+    model="exaone3.5:7.8b",
     temperature=0.3,
 )
 
@@ -40,3 +40,15 @@ work_flow.add_node("generator", call_llm_node)
 work_flow.set_entry_point("refiner")
 work_flow.add_edge("refiner", "generator")
 work_flow.add_edge("generator", END)
+
+
+# 7. 컴파일 후 실행
+app = work_flow.compile()
+
+query = input("암거나 물어바바\n")
+result = app.invoke({'ori_query': query})
+
+print("=== 최종 결과 ===")
+print(f"유저 질문: {result['ori_query']}")
+print(f"1차 다듬어진 질문: {result['refined_query']}")
+print(f"최종 답변: {result['response']}")
