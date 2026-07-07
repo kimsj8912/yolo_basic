@@ -9,3 +9,5 @@ langchain-chroma
 PyPDF2
 
 langchain-community
+
+streamlit
